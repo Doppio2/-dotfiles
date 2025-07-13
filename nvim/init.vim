@@ -57,8 +57,10 @@ colorscheme ep4
 set laststatus=1
 
 " font
-if has("win32")
-    set guifont=Liberation\ Mono:h11
+if exists("g:neovide")
+    set guifont=Liberation\ Mono:h16
+elseif has("win32")
+    set guifont=Liberation\ Mono:11
 elseif has("unix")
     set guifont=Liberation\ Mono\ 15
 endif
@@ -89,6 +91,8 @@ set clipboard^=unnamed,unnamedplus
 " Page up, page down.
 nnoremap f <C-f>
 nnoremap m <C-b>
+vnoremap f <C-f>
+vnoremap m <C-b>
 
 " Visual block mode.
 nnoremap , <C-v>
