@@ -58,7 +58,7 @@ set laststatus=1
 
 " font
 if exists("g:neovide")
-    set guifont=Liberation\ Mono:h16
+    set guifont=Liberation\ Mono:h12.5
 elseif has("win32")
     set guifont=Liberation\ Mono:11
 elseif has("unix")
@@ -87,6 +87,9 @@ set clipboard^=unnamed,unnamedplus
 " vnoremap <C-j> <Esc>
 " snoremap <C-j> <Esc>
 " onoremap <C-j> <Esc>
+
+"For terminal mode
+tnoremap <Esc> <C-\><C-n>
 
 " Page up, page down.
 nnoremap f <C-f>
