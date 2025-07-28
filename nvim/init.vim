@@ -1,5 +1,6 @@
 "For plugins decomment this and create folder.
 "set runtimepath+=/.vim/plugin/
+
 syntax on
 
 set nobackup		" do not keep a backup file
@@ -107,6 +108,9 @@ vnoremap q <C-w>w
 nnoremap <M-2> :vsplit<CR>
 nnoremap <M-1> <C-w>o
 
+" Bindings for tabs.
+nnoremap <M-e> gt
+
 " Save buffers
 nnoremap <M-s> :w<CR>
 inoremap <M-s> <c-o>:w<cr>
@@ -120,7 +124,7 @@ nnoremap <M-k> :bp<bar>sp<bar>bn<bar>bd<CR>
 "nnoremap . :bn<CR>
 
 " NERDTree settings
-nnoremap <M-e> :NERDTreeFocus<CR>
+""nnoremap <M-e> :NERDTreeFocus<CR>
 
 " Autoread file with external changes
 autocmd FocusGained * silent! checktime
