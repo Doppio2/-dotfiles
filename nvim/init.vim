@@ -22,6 +22,7 @@ if has('mouse')
 endif
 
 set expandtab
+set nosmarttab
 set tabstop=4
 set shiftwidth=4
 set nowrap
@@ -120,6 +121,7 @@ nnoremap <M-/> :noh<CR>
 
 " Bindings for buffers
 nnoremap <M-k> :bp<bar>sp<bar>bn<bar>bd<CR>
+nnoremap <M-q> :b#<CR>
 "nnoremap , :bp<CR>
 "nnoremap . :bn<CR>
 
