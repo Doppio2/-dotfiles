@@ -83,16 +83,3 @@ set guicursor=n-v-c:block-Cursor
 set guicursor+=i:block-iCursor
 set guicursor+=i:blinkwait10
 set guicursor+=a:blinkon0
-
-highlight Variable guifg=#a6978a gui=NONE
-
-highlight link @lsp.type.variable.cpp Variable
-highlight link @lsp.type.parameter.cpp Variable
-highlight link @lsp.type.macro.cpp Macro
-
-highlight link @function Function
-highlight link @keyword Statement
-highlight link @type Type
-highlight link @string String
-highlight link @comment Comment
-highlight link @constant Constant
