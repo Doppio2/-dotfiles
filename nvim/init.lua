@@ -50,9 +50,12 @@ vim.cmd("colorscheme ep4")
 -- Status hiden, when 1 window open.
 vim.opt.laststatus = 1
 
--- Disable leader timeout
+-- Disable leader timeout.
 vim.opt.timeout = false
 vim.opt.ttimeout = true
+
+-- Disable autocomments.
+vim.cmd('autocmd BufEnter * setlocal formatoptions-=ro')
 
 -- File searche like in emacs
 -- NOTE: disabled foreawhile.
@@ -185,6 +188,5 @@ require('lazy').setup({
 
                 vim.keymap.set("n", "t", ":Oil<CR>", {noremap = true, silent = true})
             end
-
-        }
+        },
     })
