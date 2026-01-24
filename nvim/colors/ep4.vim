@@ -80,8 +80,7 @@ highligh MatchParen guifg=#D95B5B guibg=#181818
 highlight Cursor guifg=#49483E guibg=#75BF3F 
 highlight iCursor guifg=#49483E guibg=#D95B5B
 set guicursor=n-v-c:block-Cursor
-set guicursor+=i:ver25-Cursor
-set guicursor+=v:hor25-Cursor
+set guicursor+=i:block-iCursor
 set guicursor+=i:blinkwait10
 set guicursor+=a:blinkon0
 
