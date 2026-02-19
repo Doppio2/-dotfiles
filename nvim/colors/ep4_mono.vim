@@ -26,13 +26,13 @@ highlight Identifier guifg=#d0d0d0
 highlight Function guifg=#d0d0d0
 
 " Statemant
-highlight Statement guifg=#d0d0d0 gui=bold
-highlight Conditional guifg=#d0d0d0 gui=bold
-highlight Repeat guifg=#d0d0d0 gui=bold
-highlight Label guifg=#d0d0d0 gui=bold
-highlight Operator guifg=#d0d0d0 gui=bold
-highlight Keyword guifg=#d0d0d0 gui=bold
-highlight Exception guifg=d0d0d0 gui=bold
+highlight Statement guifg=#d0d0d0 gui=NONE
+highlight Conditional guifg=#d0d0d0 gui=NONE
+highlight Repeat guifg=#d0d0d0 gui=NONE
+highlight Label guifg=#d0d0d0 gui=NONE
+highlight Operator guifg=#d0d0d0 gui=NONE
+highlight Keyword guifg=#d0d0d0 gui=NONE
+highlight Exception guifg=d0d0d0 gui=NONE
 
 " PreProc
 highlight PreProc guifg=#edba32 gui=NONE
