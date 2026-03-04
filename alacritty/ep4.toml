@@ -3,7 +3,7 @@ background = "#181818"
 foreground = "#a6978a"
 
 [colors.cursor]
-cursor = "#75BF3F"
+cursor = "#60B373"
 text = "#49483E"
 
 [colors.normal]

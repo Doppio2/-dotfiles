@@ -53,7 +53,7 @@ highlight SpecialComment guifg=#a6978a
 highlight Debug guifg=#a6978a
 
 " Else stuff
-highlight Todo guifg=#75BF3F guibg=#181818 
+highlight Todo guifg=#7D7D7D guibg=#181818 gui=underline
 
 " UI
 if has("nvim") 
@@ -77,11 +77,11 @@ highlight PMenuSel guibg=#75BF3F guifg=#a6978a
 highlight Visual guifg=NONE guibg=#49483E 
 highligh MatchParen guifg=#D95B5B guibg=#181818 
 
-highlight Cursor guifg=#49483E guibg=#75BF3F 
+highlight Cursor guifg=#49483E guibg=#60B373
 highlight iCursor guifg=#49483E guibg=#D95B5B
 set guicursor=n-v-c:block-Cursor
-set guicursor+=i:block-iCursor
-set guicursor+=t:block-iCursor
+set guicursor+=i:ver25-Cursor
+set guicursor+=t:ver25-Cursor
 set guicursor+=i:blinkwait10
 set guicursor+=a:blinkon0
 
