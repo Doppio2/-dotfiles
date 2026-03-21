@@ -6,7 +6,7 @@ endif
 set background=dark
 
 " Comment
-highlight Comment guifg=#c09fc9
+highlight Comment guifg=#7D7D7D
 " Bg and fg
 highlight Normal guibg=#0d0d0d guifg=#a6978a
 
@@ -53,7 +53,7 @@ highlight SpecialComment guifg=#a6978a
 highlight Debug guifg=#a6978a
 
 " Else stuff
-highlight Todo guifg=#c09fc9 guibg=#0d0d0d gui=underline
+highlight Todo guifg=#7D7D7D guibg=#0d0d0d gui=underline
 
 " UI
 if has("nvim") 
