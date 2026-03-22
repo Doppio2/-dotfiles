@@ -19,8 +19,8 @@ highlight Boolean guifg=#d6d6d6
 highlight Float guifg=#d6d6d6 
 
 " Identifier
-highlight Identifier guifg=#69c27d
-highlight Function guifg=#69c27d
+highlight Identifier guifg=#49cc67
+highlight Function guifg=#49cc67
 
 " Statemant
 highlight Statement guifg=#de4040 gui=NONE
@@ -32,11 +32,11 @@ highlight Keyword guifg=#de4040
 highlight Exception guifg=#de4040 
 
 " PreProc
-highlight PreProc guifg=#e3be5b gui=NONE
-highlight Define guifg=#e3be5b 
-highlight Macro guifg=#e3be5b 
-highlight PreCondit guifg=#e3be5b 
-highlight Include guifg=#e3be5b 
+highlight PreProc guifg=#e6b739 gui=NONE
+highlight Define guifg=#e6b739 
+highlight Macro guifg=#e6b739 
+highlight PreCondit guifg=#e6b739 
+highlight Include guifg=#e6b739 
 
 " Type
 highlight Type guifg=#4dbdaf gui=NONE
