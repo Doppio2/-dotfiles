@@ -1,5 +1,5 @@
 [colors.primary]
-background = "#0d0d0d"
+background = "#181818"
 foreground = "#a6978a"
 
 [colors.cursor]
@@ -14,4 +14,4 @@ green = "#75BF3F"
 magenta = "0xff79c6"
 red = "#d95b5b"
 white = "0xbfbfbf"
-yellow = "0xf1fa8c"
+yellow = "#D8A51D"

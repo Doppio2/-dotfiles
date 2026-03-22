@@ -8,76 +8,76 @@ set background=dark
 " Comment
 highlight Comment guifg=#7D7D7D
 " Bg and fg
-highlight Normal guibg=#0d0d0d guifg=#bfae9f
+highlight Normal guibg=#181818 guifg=#a6978a
 
 " Constant
-highlight Constant guifg=#d6d6d6 gui=NONE
-highlight String guifg=#d6d6d6 
-highlight Character guifg=#d6d6d6 
-highlight Number guifg=#d6d6d6 
-highlight Boolean guifg=#d6d6d6 
-highlight Float guifg=#d6d6d6 
+highlight Constant guifg=#BFBFBF gui=NONE
+highlight String guifg=#BFBFBF
+highlight Character guifg=#BFBFBF
+highlight Number guifg=#BFBFBF
+highlight Boolean guifg=#BFBFBF
+highlight Float guifg=#BFBFBF
 
 " Identifier
-highlight Identifier guifg=#49cc67
-highlight Function guifg=#49cc67
+highlight Identifier guifg=#60B373
+highlight Function guifg=#60B373
 
 " Statemant
-highlight Statement guifg=#de4040 gui=NONE
-highlight Conditional guifg=#de4040 
-highlight Repeat guifg=#de4040 
-highlight Label guifg=#de4040 
-highlight Operator guifg=#de4040 
-highlight Keyword guifg=#de4040 
-highlight Exception guifg=#de4040 
+highlight Statement guifg=#d95b5b gui=NONE
+highlight Conditional guifg=#d95b5b
+highlight Repeat guifg=#d95b5b     
+highlight Label guifg=#d95b5b      
+highlight Operator guifg=#d95b5b   
+highlight Keyword guifg=#d95b5b    
+highlight Exception guifg=#d95b5b  
 
 " PreProc
-highlight PreProc guifg=#e6b739 gui=NONE
-highlight Define guifg=#e6b739 
-highlight Macro guifg=#e6b739 
-highlight PreCondit guifg=#e6b739 
-highlight Include guifg=#e6b739 
+highlight PreProc guifg=#D8A51D gui=NONE
+highlight Define guifg=#D8A51D
+highlight Macro guifg=#D8A51D
+highlight PreCondit guifg=#D8A51D
+highlight Include guifg=#D8A51D
 
 " Type
-highlight Type guifg=#4dbdaf gui=NONE
-highlight StorageClass guifg=#4dbdaf 
-highlight Structure guifg=#4dbdaf 
-highlight Typedef guifg=#4dbdaf 
+highlight Type guifg=#56A69C gui=NONE
+highlight StorageClass guifg=#56A69C
+highlight Structure guifg=#56A69C
+highlight Typedef guifg=#56A69C
 
 "Special
-highlight Special guifg=#bfae9f gui=NONE
-highlight SpecialChar guifg=#bfae9f
-highlight Tag guifg=#bfae9f
-highlight Delimiter guifg=#bfae9f
-highlight SpecialComment guifg=#bfae9f
-highlight Debug guifg=#bfae9f
+highlight Special guifg=#a6978a gui=NONE
+highlight SpecialChar guifg=#a6978a
+highlight Tag guifg=#a6978a
+highlight Delimiter guifg=#a6978a
+highlight SpecialComment guifg=#a6978a
+highlight Debug guifg=#a6978a
 
 " Else stuff
-highlight Todo guifg=#7D7D7D guibg=#0d0d0d gui=underline
+highlight Todo guifg=#7D7D7D guibg=#181818 gui=underline
 
 " UI
 if has("nvim") 
-    highlight StatusLine guibg=#1d1d1d guifg=#bfae9f 
-    highlight StatusLineNC guibg=#1d1d1d guifg=#bfae9f 
+    highlight StatusLine guibg=#313131 guifg=#a6978a 
+    highlight StatusLineNC guibg=#313131 guifg=#a6978a 
 else 
-    highlight StatusLine guibg=#bfae9f guifg=#313131
-    highlight StatusLineNC guibg=#bfae9f guifg=#313131
+    highlight StatusLine guibg=#a6978a guifg=#313131
+    highlight StatusLineNC guibg=#a6978a guifg=#313131
 endif
 
-highligh WinSeparator guifg=#0d0d0d guibg=#0d0d0d 
-highlight VertSplit guifg=#0d0d0d guibg=#0d0d0d 
-highlight LineNr guifg=#bfae9f
-highlight NonText guifg=#bfae9f
+highligh WinSeparator guifg=#181818 guibg=#181818 
+highlight VertSplit guifg=#181818 guibg=#181818 
+highlight LineNr guifg=#a6978a
+highlight NonText guifg=#a6978a
 highlight IncSearch guibg=#E4E4EF guibg=#49483E
 hi Search guibg=#49483E guifg=#E4E4EF
 
-highlight PMenu guibg=#49483E guifg=#bfae9f
-highlight PMenuSel guibg=#75BF3F guifg=#bfae9f
+highlight PMenu guibg=#49483E guifg=#a6978a
+highlight PMenuSel guibg=#75BF3F guifg=#a6978a
 
 highlight Visual guifg=NONE guibg=#49483E 
-highligh MatchParen guifg=#de4040 guibg=#0d0d0d 
+highligh MatchParen guifg=#de4040 guibg=#181818 
 
-highlight Cursor guifg=#49483E guibg=#38c758
+highlight Cursor guifg=#49483E guibg=#60B373
 highlight iCursor guifg=#49483E guibg=#D95B5B
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver25-Cursor
@@ -85,7 +85,7 @@ set guicursor+=t:ver25-Cursor
 set guicursor+=i:blinkwait10
 set guicursor+=a:blinkon0
 
-highlight Variable guifg=#bfae9f gui=NONE
+highlight Variable guifg=#a6978a gui=NONE
 
 highlight link @lsp.type.variable.cpp Variable
 highlight link @lsp.type.parameter.cpp Variable
