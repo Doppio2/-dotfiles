@@ -24,13 +24,13 @@ highlight Identifier guifg=#60B373
 highlight Function guifg=#60B373
 
 " Statemant
-highlight Statement guifg=#d79a4b gui=NONE
-highlight Conditional guifg=#d79a4b
-highlight Repeat guifg=#d79a4b     
-highlight Label guifg=#d79a4b 
-highlight Operator guifg=#d79a4b 
-highlight Keyword guifg=#d79a4b 
-highlight Exception guifg=#d79a4b 
+highlight Statement guifg=#d15030 gui=NONE
+highlight Conditional guifg=#d15030 
+highlight Repeat guifg=#d15030 
+highlight Label guifg=#d15030 
+highlight Operator guifg=#d15030 
+highlight Keyword guifg=#d15030 
+highlight Exception guifg=#d15030 
 
 " PreProc
 highlight PreProc guifg=#BFBFBF gui=NONE
