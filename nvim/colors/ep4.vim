@@ -8,7 +8,7 @@ set background=dark
 " Comment
 highlight Comment guifg=#7D7D7D
 " Bg and fg
-highlight Normal guibg=#181818 guifg=#a6978a
+highlight Normal guibg=#1e1e1e guifg=#a6978a
 
 " Constant
 highlight Constant guifg=#BFBFBF gui=NONE
@@ -53,7 +53,7 @@ highlight SpecialComment guifg=#a6978a
 highlight Debug guifg=#a6978a
 
 " Else stuff
-highlight Todo guifg=#7D7D7D guibg=#181818 gui=underline
+highlight Todo guifg=#7D7D7D guibg=#1e1e1e gui=underline
 
 " UI
 if has("nvim") 
@@ -64,8 +64,8 @@ else
     highlight StatusLineNC guibg=#a6978a guifg=#313131
 endif
 
-highligh WinSeparator guifg=#181818 guibg=#181818 
-highlight VertSplit guifg=#181818 guibg=#181818 
+highligh WinSeparator guifg=#1e1e1e guibg=#1e1e1e 
+highlight VertSplit guifg=#1e1e1e guibg=#1e1e1e 
 highlight LineNr guifg=#a6978a
 highlight NonText guifg=#a6978a
 highlight IncSearch guibg=#E4E4EF guibg=#49483E
@@ -75,7 +75,7 @@ highlight PMenu guibg=#49483E guifg=#a6978a
 highlight PMenuSel guibg=#75BF3F guifg=#a6978a
 
 highlight Visual guifg=NONE guibg=#49483E 
-highligh MatchParen guifg=#de4040 guibg=#181818 
+highligh MatchParen guifg=#d95b5b guibg=#1e1e1e 
 
 highlight Cursor guifg=#49483E guibg=#60B373
 highlight iCursor guifg=#49483E guibg=#D95B5B
