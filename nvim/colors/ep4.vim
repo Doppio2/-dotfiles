@@ -77,7 +77,7 @@ highlight PMenuSel guibg=#75BF3F guifg=#a6978a
 highlight Visual guifg=NONE guibg=#49483E 
 highligh MatchParen guifg=#d95b5b guibg=#1e1e1e 
 
-highlight Cursor guifg=#49483E guibg=#60B373
+highlight Cursor guifg=#49483E guibg=#6bdb85
 highlight iCursor guifg=#49483E guibg=#D95B5B
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver25-Cursor
