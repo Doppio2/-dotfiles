@@ -91,7 +91,7 @@ vim.keymap.set("n", "<M-s>", ":w<CR>")
 vim.keymap.set("i", "<M-s>", "<C-o>:w<CR>")
 
 -- Buffers.
-vim.keymap.set("n", "<M-k>", ":bp<bar>sp<bar>bn<bar>bd<CR>") -- Kill and switch to next
+vim.keymap.set("n", "<M-h>", ":bp<bar>sp<bar>bn<bar>bd<CR>") -- Kill and switch to next
 vim.keymap.set("n", "<M-q>", ":b#<CR>")                      -- Switch to last.
 
 -- Autoread file with external changes.
@@ -111,6 +111,84 @@ vim.keymap.set("n", "<M-/>", ":noh<CR>", { silent = true })
 -- Fix stupid clipboard.
 vim.opt.clipboard = "unnamedplus"
 
+-- Default build command --
+if vim.fn.has("win32") == 1 then 
+    vim.opt.makeprg = "cmd /c chcp 65001 >nul && build.bat"
+else
+    vim.opt.makeprg = "./build.sh"
+end
+
+vim.api.nvim_create_user_command("MakeQuickFix", function(opts)
+  vim.cmd("silent! make " .. opts.args)
+  vim.cmd("botright copen")
+end, { nargs = "*" })
+
+vim.api.nvim_create_user_command("MakeQuickFixStay", function()
+    local win = vim.fn.win_getid()
+    local pos = vim.fn.getpos(".")
+
+    vim.cmd("MakeQuickFix")
+
+    vim.fn.win_gotoid(win)
+    vim.fn.setpos(".", pos)
+end, {})
+vim.keymap.set("n", "<M-v>", ":MakeQuickFixStay<CR>")
+
+-- Quickfix --
+-- Open quickfix and return to cursor pos.
+vim.keymap.set("n", "<A-x>", function()
+    local current_win = vim.fn.win_getid()
+    local current_pos = vim.fn.getpos(".")
+
+    for _, win in ipairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            vim.cmd("cclose")
+
+            if vim.fn.win_gotoid(current_win) == 1 then
+                vim.fn.setpos(".", current_pos)
+            end
+
+            return
+        end
+    end
+
+    vim.cmd("botright copen")
+
+    if vim.fn.win_gotoid(current_win) == 1 then
+        vim.fn.setpos(".", current_pos)
+    end
+end, {
+    noremap = true,
+    silent = true,
+    desc = "Toggle quickfix without focus",
+})
+
+-- Switch to quickfix if opened.
+vim.keymap.set("n", "<A-n>", function()
+    for _, win in ipairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            vim.fn.win_gotoid(win.winid)
+            return
+        end
+    end
+end, {
+    noremap = true,
+    silent = true,
+    desc = "Focus quickfix if open",
+})
+
+vim.keymap.set("n", "<A-j>", ":cnext<CR>", {
+    noremap = true,
+    silent = true,
+    desc = "Next quickfix item",
+})
+
+vim.keymap.set("n", "<A-k>", ":cprev<CR>", {
+    noremap = true,
+    silent = true,
+    desc = "Previous quickfix item",
+})
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -127,6 +205,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+
+if vim.g.neovide then
+    vim.o.guifont = "Liberation Mono:h16" -- text below applies for VimScript
+end
 
 -- Install plugins using lazy
 require('lazy').setup({
