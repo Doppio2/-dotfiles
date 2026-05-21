@@ -266,6 +266,9 @@ require('lazy').setup({
                 oil.setup{
                     default_file_explorer = true,
                     delete_to_trash = false,
+                    view_options = {
+                        show_hidden = true,
+                    },
                 }
 
                 vim.keymap.set("n", "t", ":Oil<CR>", {noremap = true, silent = true})
