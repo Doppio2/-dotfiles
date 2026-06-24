@@ -279,6 +279,7 @@ require('lazy').setup({
             end
         },
         {
+<<<<<<< HEAD
             "neovim/nvim-lspconfig",
 
             dependencies = {
@@ -340,5 +341,11 @@ require('lazy').setup({
                 end)
             end
         },
+        {
+            'ludovicchabant/vim-gutentags',
+            init = function()
+                vim.g.gutentags_ctags_tagfile = 'tags'
+                vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/tags/')
+            end,
+        },
     })
-
