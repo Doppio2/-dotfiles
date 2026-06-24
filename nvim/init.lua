@@ -279,7 +279,6 @@ require('lazy').setup({
             end
         },
         {
-<<<<<<< HEAD
             "neovim/nvim-lspconfig",
 
             dependencies = {
