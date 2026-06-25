@@ -274,4 +274,73 @@ require('lazy').setup({
                 vim.keymap.set("n", "t", ":Oil<CR>", {noremap = true, silent = true})
             end
         },
+        {
+            "neovim/nvim-lspconfig",
+
+            dependencies = {
+                "hrsh7th/nvim-cmp",
+                "hrsh7th/cmp-nvim-lsp",
+            },
+
+            config = function()
+                -- CMP capabilities
+                local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+                -- PYRIGHT
+                vim.lsp.config("pyright", {
+                    capabilities = capabilities,
+                })
+
+                vim.lsp.enable("pyright")
+
+                -- AUTOCOMPLETE
+                local cmp = require("cmp")
+
+                cmp.setup({
+                    completion = {
+                        autocomplete = false,
+                    },
+
+                    mapping = cmp.mapping.preset.insert({
+                        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                        ["<C-Space>"] = cmp.mapping.complete(),
+                    }),
+
+                    sources = {
+                        { name = "nvim_lsp" },
+                    },
+                })
+
+                -- LSP KEYMAPS
+                vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+                vim.keymap.set("n", "gr", vim.lsp.buf.references)
+                vim.keymap.set("n", "K", vim.lsp.buf.hover)
+
+                -- DIAGNOSTICS
+                vim.diagnostic.config({
+                    virtual_text = true,
+                    signs = true,
+                })
+
+                -- TOGGLE DIAGNOSTICS
+                local diagnostics_enabled = true
+
+                vim.keymap.set("n", "<F8>", function()
+                    diagnostics_enabled = not diagnostics_enabled
+
+                    vim.diagnostic.config({
+                        virtual_text = diagnostics_enabled,
+                        underline = diagnostics_enabled,
+                        signs = diagnostics_enabled,
+                    })
+                end)
+            end
+        },
+        {
+            'ludovicchabant/vim-gutentags',
+            init = function()
+                vim.g.gutentags_ctags_tagfile = 'tags'
+                vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/tags/')
+            end,
+        },
     })
