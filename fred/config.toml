@@ -22,7 +22,7 @@ selected_editor = 0x1e1e1eff
 line_guides = 0xadd6ff26
 active_line_guide = 0xd95b5bff
 highlight_line_copy = 0x9a02ff
-highlight_line_edit =  0x60b373ff
+highlight_line_edit = 0x60b373ff
 cursor_line_outline = 0x76767650
 cursor_line_fill = 0x44424850
 
@@ -53,8 +53,8 @@ noisy_search = false
 noisy_events = false
 noisy_flattened_events = false
 noisy_find_all = false
-font_size_px = 16
-tray_font_size = 16
+font_size_px = 14
+tray_font_size = 14
 tabstop = 4
 line_number_style = 'LineNumberStyle_Classic'
 line_rulers = []
@@ -155,7 +155,7 @@ last_save_node_color = 0xff00ff
 external_change_node_color = 0xb11be3ff
 
 [diff.state]
-diff_font_size = 16
+diff_font_size = 14
 
 [file_explorer.colors]
 default_font_color = 0x92e99aff
@@ -175,7 +175,7 @@ PB_color = 0xff0a00ff
 EB_color = 0xffffffff
 
 [file_explorer.state]
-font_size = 16
+font_size = 14
 noisy_dir_root = false
 rooted_filters = ""
 
@@ -185,7 +185,7 @@ warning = 0xe3811cff
 error = 0xff0000ff
 
 [feed.state]
-feed_font_size = 16
+feed_font_size = 14
 
 [widget.colors]
 window_border = 0x313131ff
@@ -208,13 +208,13 @@ active_tab_highlight = 0xffffff80
 active_selection = 0x929292ff
 
 [widget.state]
-window_title_font_size = 16
+window_title_font_size = 14
 scrollbar_width = 10
 scrollbar_min_size = 20
 
 [system.core]
 preferred_file_explorer = ''
-core_window_rect = [270, 208, 1366, 768]
+core_window_rect = [294, 98, 1366, 768]
 async_update_frequency_ms = 1000
 editor_theme = 'ColorTheme_Fred'
 fullscreen = true

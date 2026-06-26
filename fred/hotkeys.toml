@@ -181,7 +181,7 @@ mods = ["Ctrl","Shift"]
 [[binding]]
 name = "ED_Save"
 key = "S"
-mods = ["Ctrl"]
+mods = ["Alt"]
 
 [[binding]]
 name = "ED_SaveAll"
@@ -315,18 +315,18 @@ mods = ["Ctrl","Shift"]
 
 [[binding]]
 name = "ED_CyclePanelForward"
-key = "PgDn"
-mods = ["Ctrl"]
+key = "."
+mods = ["Alt"]
 
 [[binding]]
 name = "ED_CyclePanelBack"
-key = "PgUp"
-mods = ["Ctrl"]
+key = ","
+mods = ["Alt"]
 
 [[binding]]
 name = "ED_CycleOnlyPanelForward"
-key = "PgDn"
-mods = ["Ctrl","Shift"]
+key = "Q"
+mods = ["Alt"]
 
 [[binding]]
 name = "ED_CycleOnlyPanelBack"
@@ -342,6 +342,16 @@ mods = ["Ctrl","Shift"]
 name = "ED_CenterViewToCursor"
 key = "M"
 mods = ["Ctrl"]
+
+[[binding]]
+name = "ED_NavPageDown"
+key = "F"
+mods = ["Alt"]
+
+[[binding]]
+name = "ED_NavPageUp"
+key = "B"
+mods = ["Alt"]
 
 [[binding]]
 name = "FILE_EXP_FileNewPanel"
