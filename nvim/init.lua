@@ -210,6 +210,41 @@ if vim.g.neovide then
     vim.o.guifont = "Liberation Mono:h16" -- text below applies for VimScript
 end
 
+-- Treesitter
+local ts_languages = { "c", "cpp", "python", "go", "lua", "javascript", "typescript", "rust" }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = ts_languages,
+  callback = function()
+    vim.treesitter.start()
+  end,
+})
+
+-- Ctags
+if vim.uv.os_uname().sysname == "Windows_NT" then
+  vim.opt.tags = "./tags,tags;C:/dev"
+else
+  vim.opt.tags = "./tags,tags;/home"
+end
+
+-- Autosave ctags.
+vim.api.nvim_create_user_command("GenerateTags", function()
+  vim.fn.system({
+    "ctags",
+    "-f", "tags",
+    "--exclude=build",
+    "--exclude=.git",
+    "-R",
+    "src",
+  })
+end, {})
+local ctags_group = vim.api.nvim_create_augroup("CtagsAutoSave", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = ctags_group,
+  pattern = { "*.c", "*.h", "*.cpp", "*.go", "*.py" },
+  command = "silent! GenerateTags",
+})
+
 -- Install plugins using lazy
 require('lazy').setup({
     { 
@@ -337,10 +372,30 @@ require('lazy').setup({
             end
         },
         {
-            'ludovicchabant/vim-gutentags',
-            init = function()
-                vim.g.gutentags_ctags_tagfile = 'tags'
-                vim.g.gutentags_cache_dir = vim.fn.expand('~/.cache/nvim/tags/')
-            end,
+            "nvim-treesitter/nvim-treesitter",
+            build = ":TSUpdate",
         },
+        {
+            "lukas-reineke/indent-blankline.nvim",
+            main = "ibl",
+            opts = {
+                indent = {
+                    char = "┆",
+                },
+            },
+        },
+        {
+            "RRethy/vim-illuminate",
+            event = "VeryLazy",
+            config = function()
+                require("illuminate").configure({
+                    delay = 150,
+                    large_file_cutoff = 2000,
+                    large_file_overrides = {
+                        providers = { "lsp" },
+                    },
+                })
+            end,
+        }
     })
+

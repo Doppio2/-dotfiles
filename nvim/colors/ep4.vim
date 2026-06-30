@@ -67,7 +67,7 @@ endif
 highligh WinSeparator guifg=#1e1e1e guibg=#1e1e1e 
 highlight VertSplit guifg=#1e1e1e guibg=#1e1e1e 
 highlight LineNr guifg=#a6978a
-highlight NonText guifg=#a6978a
+highlight NonText guifg=#303030
 highlight IncSearch guibg=#E4E4EF guibg=#49483E
 hi Search guibg=#49483E guifg=#E4E4EF
 
@@ -91,9 +91,43 @@ highlight link @lsp.type.variable.cpp Variable
 highlight link @lsp.type.parameter.cpp Variable
 highlight link @lsp.type.macro.cpp Macro
 
-highlight link @function Function
-highlight link @keyword Statement
-highlight link @type Type
-highlight link @string String
+" Treesitter
+
+" Comment
 highlight link @comment Comment
+
+" Keyword
+highlight link @keyword Statement
+highlight link @keyword.directive PreProc  
+highlight link @keyword.type Type  
+
+" Type
+highlight link @type Type
+highlight link @type.builtin Type
+
+" Constants
 highlight link @constant Constant
+highlight link @string String
+
+" Functions, preproc.
+highlight link @function Function
+highlight link @constructor Function
+highlight link @function.macro PreProc
+highlight link @keyword.import PreProc
+highlight link @constant.macro PreProc
+
+" Vars
+highlight link @variable Normal
+highlight link @variable.c Normal
+highlight link @variable.cpp Normal
+highlight link @variable.member Normal
+highlight link @variable.parameter Normal
+highlight link @property Normal 
+
+" Scopes.
+highlight IblIndent guifg=#303030
+highlight IblScope guifg=#d95b5b gui=NONE
+
+"highlight IlluminatedWordText guibg=#2c3945 gui=NONE
+"highlight IlluminatedWordRead guibg=#2c3945 gui=NONE
+"highlight IlluminatedWordWrite guibg=#2c3945 gui=NONE
