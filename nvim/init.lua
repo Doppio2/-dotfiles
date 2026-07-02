@@ -113,7 +113,9 @@ vim.opt.clipboard = "unnamedplus"
 
 -- Default build command --
 if vim.fn.has("win32") == 1 then 
-    vim.opt.makeprg = "cmd /c chcp 65001 >nul && build.bat"
+    --vim.opt.makeprg = 'cmd /c "chcp 65001>nul && ./build"'
+    --vim.opt.makeprg = 'cmd /c call ".\\build.bat"'
+    vim.opt.makeprg = 'call .\\build.bat'
 else
     vim.opt.makeprg = "./build.sh"
 end
@@ -189,6 +191,47 @@ vim.keymap.set("n", "<A-k>", ":cprev<CR>", {
     desc = "Previous quickfix item",
 })
 
+-- Ctags.
+vim.api.nvim_create_user_command("GenerateTags", function()
+
+    local root = vim.fs.root(0, {
+        ".git",
+        "CMakeLists.txt",
+        "compile_commands.json",
+    })
+
+    if not root then
+        root = vim.fn.getcwd()
+    end
+
+    vim.system({
+        "ctags",
+        "-R",
+        "-f", root .. "/tags",
+
+        "--exclude=build",
+        "--exclude=.git",
+        "--exclude=.cache",
+
+        root,
+    }, {
+        cwd = root,
+    }, function(result)
+        vim.schedule(function()
+            if result.code == 0 then
+                print("Tags generated.")
+            else
+                print("ctags failed:")
+                print(result.stderr)
+            end
+        end)
+    end)
+
+end, {})
+vim.keymap.set("n", "<F1>", "<cmd>GenerateTags<CR>", {
+    desc = "Generate tags",
+})
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -218,31 +261,6 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     vim.treesitter.start()
   end,
-})
-
--- Ctags
-if vim.uv.os_uname().sysname == "Windows_NT" then
-  vim.opt.tags = "./tags,tags;C:/dev"
-else
-  vim.opt.tags = "./tags,tags;/home"
-end
-
--- Autosave ctags.
-vim.api.nvim_create_user_command("GenerateTags", function()
-  vim.fn.system({
-    "ctags",
-    "-f", "tags",
-    "--exclude=build",
-    "--exclude=.git",
-    "-R",
-    "src",
-  })
-end, {})
-local ctags_group = vim.api.nvim_create_augroup("CtagsAutoSave", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-  group = ctags_group,
-  pattern = { "*.c", "*.h", "*.cpp", "*.go", "*.py" },
-  command = "silent! GenerateTags",
 })
 
 -- Install plugins using lazy
@@ -396,6 +414,6 @@ require('lazy').setup({
                     },
                 })
             end,
-        }
+        },
     })
 
