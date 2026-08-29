@@ -120,6 +120,32 @@ else
     vim.opt.makeprg = "./build.sh"
 end
 
+-- Grep settings
+if vim.fn.executable("rg") == 1 then
+  vim.opt.grepprg = "rg --vimgrep"
+
+  -- F3: interactive grep
+  vim.keymap.set("n", "<F3>", function()
+    vim.ui.input({ prompt = "rg: " }, function(input)
+      if input and input ~= "" then
+        vim.cmd("silent grep " .. vim.fn.shellescape(input))
+        vim.cmd("copen")
+      end
+    end)
+  end, { desc = "Interactive grep" })
+
+  -- F4: grep word under cursor
+  vim.keymap.set("n", "<F4>", function()
+    local word = vim.fn.expand("<cword>")
+
+    if word ~= "" then
+      vim.cmd("silent grep " .. vim.fn.shellescape(word))
+      vim.cmd("copen")
+    end
+  end, { desc = "Grep word under cursor" })
+end
+
+-- Quickfix --
 vim.api.nvim_create_user_command("MakeQuickFix", function(opts)
   vim.cmd("silent! make " .. opts.args)
   vim.cmd("botright copen")
@@ -136,7 +162,6 @@ vim.api.nvim_create_user_command("MakeQuickFixStay", function()
 end, {})
 vim.keymap.set("n", "<M-v>", ":MakeQuickFixStay<CR>")
 
--- Quickfix --
 -- Open quickfix and return to cursor pos.
 vim.keymap.set("n", "<A-x>", function()
     local current_win = vim.fn.win_getid()
