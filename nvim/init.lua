@@ -115,40 +115,71 @@ vim.opt.clipboard = "unnamedplus"
 if vim.fn.has("win32") == 1 then 
     --vim.opt.makeprg = 'cmd /c "chcp 65001>nul && ./build"'
     --vim.opt.makeprg = 'cmd /c call ".\\build.bat"'
-    vim.opt.makeprg = 'call .\\build.bat'
+    vim.opt.makeprg = 'chcp 65001 >nul & call .\\build.bat'
+    --vim.opt.makeprg = 'call .\\build.bat'
 else
     vim.opt.makeprg = "./build.sh"
 end
 
 -- Grep settings
 if vim.fn.executable("rg") == 1 then
-  vim.opt.grepprg = "rg --vimgrep"
+    vim.opt.grepprg = "rg --vimgrep"
 
-  -- F3: interactive grep
-  vim.keymap.set("n", "<F3>", function()
-    vim.ui.input({ prompt = "rg: " }, function(input)
-      if input and input ~= "" then
-        vim.cmd("silent grep " .. vim.fn.shellescape(input))
-        vim.cmd("copen")
-      end
-    end)
-  end, { desc = "Interactive grep" })
+    -- F3: interactive grep
+    vim.keymap.set("n", "<F3>", function()
+        vim.ui.input({ prompt = "rg: " }, function(input)
+            if input and input ~= "" then
+                vim.cmd("silent grep " .. vim.fn.shellescape(input))
+                vim.cmd("copen")
+            end
+        end)
+    end, { desc = "Interactive grep" })
 
-  -- F4: grep word under cursor
-  vim.keymap.set("n", "<F4>", function()
-    local word = vim.fn.expand("<cword>")
+    -- F4: grep word under cursor
+    vim.keymap.set("n", "<F4>", function()
+        local word = vim.fn.expand("<cword>")
 
-    if word ~= "" then
-      vim.cmd("silent grep " .. vim.fn.shellescape(word))
-      vim.cmd("copen")
-    end
-  end, { desc = "Grep word under cursor" })
+        if word ~= "" then
+            vim.cmd("silent grep " .. vim.fn.shellescape(word))
+            vim.cmd("copen")
+        end
+    end, { desc = "Grep word under cursor" })
 end
 
 -- Quickfix --
+-- NOTE(denis): async build.
+local build_job = nil
 vim.api.nvim_create_user_command("MakeQuickFix", function(opts)
-  vim.cmd("silent! make " .. opts.args)
-  vim.cmd("botright copen")
+    if build_job then
+        vim.fn.jobstop(build_job)
+    end
+
+    local cmd = vim.fn.expandcmd(vim.o.makeprg .. (opts.args ~= "" and " " .. opts.args or ""))
+    local lines = {}
+
+    build_job = vim.fn.jobstart(cmd, {
+        stdout_buffered = true,
+        stderr_buffered = true,
+        on_stdout = function(_, data)
+            if data then vim.list_extend(lines, data) end
+        end,
+        on_stderr = function(_, data)
+            if data then vim.list_extend(lines, data) end
+        end,
+        on_exit = function()
+            build_job = nil
+            while #lines > 0 and lines[#lines] == "" do
+                table.remove(lines)
+            end
+            vim.fn.setqflist({}, " ", {
+                title = cmd,
+                lines = lines,
+                efm = vim.o.errorformat,
+            })
+            vim.cmd("botright copen")
+            vim.cmd("wincmd p")
+        end,
+    })
 end, { nargs = "*" })
 
 vim.api.nvim_create_user_command("MakeQuickFixStay", function()
