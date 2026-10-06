@@ -153,10 +153,8 @@ vim.api.nvim_create_user_command("MakeQuickFix", function(opts)
     if build_job then
         vim.fn.jobstop(build_job)
     end
-
     local cmd = vim.fn.expandcmd(vim.o.makeprg .. (opts.args ~= "" and " " .. opts.args or ""))
     local lines = {}
-
     build_job = vim.fn.jobstart(cmd, {
         stdout_buffered = true,
         stderr_buffered = true,
@@ -171,6 +169,7 @@ vim.api.nvim_create_user_command("MakeQuickFix", function(opts)
             while #lines > 0 and lines[#lines] == "" do
                 table.remove(lines)
             end
+            lines = vim.tbl_map(function(l) return (l:gsub("\r$", "")) end, lines)
             vim.fn.setqflist({}, " ", {
                 title = cmd,
                 lines = lines,
